@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DevOps Project V3</title>
+<title>DevOps Project V2.5</title>
 
 <style>
 body {
@@ -24,7 +24,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 15px 50px;
-    background: #111827;
+    background: #0f172a;
     color: white;
     position: sticky;
     top: 0;
@@ -32,15 +32,8 @@ body {
 
 .navbar a {
     color: white;
-    margin: 0 10px;
     text-decoration: none;
-}
-
-/* Toggle button */
-.toggle {
-    cursor: pointer;
-    background: yellow;
-    padding: 5px 10px;
+    margin: 0 10px;
 }
 
 /* Hero */
@@ -48,18 +41,24 @@ body {
     height: 100vh;
     background: linear-gradient(120deg, #2563eb, #7c3aed);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     text-align: center;
     color: white;
 }
 
+.hero h1 {
+    font-size: 50px;
+}
+
 /* Button */
 .btn {
-    padding: 12px 25px;
-    background: gold;
+    margin-top: 20px;
+    padding: 12px 30px;
     border: none;
+    background: #facc15;
     cursor: pointer;
+    font-weight: bold;
     transition: 0.3s;
 }
 
@@ -69,7 +68,7 @@ body {
 
 /* Section */
 .section {
-    padding: 70px;
+    padding: 70px 20px;
     text-align: center;
 }
 
@@ -78,68 +77,102 @@ body {
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .card {
-    background: #e5e7eb;
-    padding: 20px;
+    background: #f1f5f9;
+    padding: 25px;
     width: 250px;
-    border-radius: 10px;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: 0.5s;
+    border-radius: 12px;
+    transition: 0.3s;
 }
 
-.card.show {
-    opacity: 1;
-    transform: translateY(0);
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* About */
+.about {
+    background: #e2e8f0;
 }
 
 /* Contact */
 input, textarea {
+    width: 250px;
     padding: 10px;
     margin: 10px;
 }
 
 /* Footer */
 .footer {
-    background: #111827;
+    background: #0f172a;
     color: white;
-    padding: 10px;
     text-align: center;
+    padding: 15px;
+}
+
+/* Top button */
+#topBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    display: none;
 }
 </style>
 </head>
 
 <body>
 
+<!-- Navbar -->
 <div class="navbar">
-    <div><b>DevOps V3</b></div>
+    <div><b>DevOps V2.5</b></div>
     <div>
         <a href="#home">Home</a>
         <a href="#features">Features</a>
+        <a href="#about">About</a>
         <a href="#contact">Contact</a>
-        <span class="toggle" onclick="toggleMode()">🌙</span>
+        <span style="cursor:pointer;" onclick="toggleMode()">🌙</span>
     </div>
 </div>
 
+<!-- Hero -->
 <div class="hero" id="home">
     <div>
-        <h1>🚀 DevOps Project V3</h1>
-        <p>Advanced Version with UI Enhancements</p>
+        <h1>🚀 DevOps Project - Version 2.5</h1>
+        <p>Improved UI with JavaScript Features</p>
+        <p id="time"></p>
         <button class="btn" onclick="scrollToSection()">Explore</button>
     </div>
 </div>
 
+<!-- Features -->
 <div class="section" id="features">
-    <h2>Features</h2>
+    <h2>Project Features</h2>
     <div class="cards">
-        <div class="card">Git Init</div>
-        <div class="card">Commit</div>
-        <div class="card">Push</div>
+        <div class="card">
+            <h3>⚙ Git Init</h3>
+            <p>Initialize repository</p>
+        </div>
+        <div class="card">
+            <h3>📦 Commit</h3>
+            <p>Track changes</p>
+        </div>
+        <div class="card">
+            <h3>🚀 Push</h3>
+            <p>Upload to GitHub</p>
+        </div>
     </div>
 </div>
 
+<!-- About -->
+<div class="section about" id="about">
+    <h2>About Project</h2>
+    <p>This is Version 2.5 with advanced UI features.</p>
+</div>
+
+<!-- Contact -->
 <div class="section" id="contact">
     <h2>Contact</h2>
     <input type="text" id="name" placeholder="Your Name"><br>
@@ -147,39 +180,58 @@ input, textarea {
     <button class="btn" onclick="sendMessage()">Send</button>
 </div>
 
+<!-- Footer -->
 <div class="footer">
-    <p>© 2026 DevOps Project V3 | Sathya</p>
+    <p>© 2026 DevOps Project V2.5 | Sathya</p>
 </div>
 
+<!-- Top Button -->
+<button onclick="topFunction()" id="topBtn">⬆</button>
+
 <script>
+
+// Scroll
 function scrollToSection() {
     document.getElementById("features").scrollIntoView();
 }
 
-// Dark mode toggle
+// Contact
+function sendMessage() {
+    let name = document.getElementById("name").value;
+    if(name === "") {
+        alert("Please enter your name");
+    } else {
+        alert("Message sent successfully!");
+    }
+}
+
+// Dark mode
 function toggleMode() {
     document.body.classList.toggle("dark");
 }
 
-// Animation on scroll
-window.addEventListener("scroll", () => {
-    document.querySelectorAll(".card").forEach(card => {
-        let position = card.getBoundingClientRect().top;
-        if(position < window.innerHeight - 50) {
-            card.classList.add("show");
-        }
-    });
-});
+// Top button
+let btn = document.getElementById("topBtn");
 
-// Form validation
-function sendMessage() {
-    let name = document.getElementById("name").value;
-    if(name === "") {
-        alert("Enter your name");
+window.onscroll = function() {
+    if (document.documentElement.scrollTop > 100) {
+        btn.style.display = "block";
     } else {
-        alert("Message Sent!");
+        btn.style.display = "none";
     }
+};
+
+function topFunction() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
 }
+
+// Live time
+setInterval(() => {
+    let now = new Date();
+    document.getElementById("time").innerText =
+    "Current Time: " + now.toLocaleTimeString();
+}, 1000);
+
 </script>
 
 </body>
